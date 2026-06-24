@@ -1,3 +1,1 @@
-Created by Marlow Rogers and Chad Gupta
-the goat
-for Study Abroad
+this is the repo for the new study abroad app.
