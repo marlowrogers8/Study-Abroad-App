@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand — teal, signalling clarity & trust */
+  --color-brand-50: #f0fdfa;
+  --color-brand-100: #cbfbf1;
+  --color-brand-200: #97f3e5;
+  --color-brand-300: #5ce4d3;
+  --color-brand-400: #2dccbe;
+  --color-brand-500: #13b1a4;
+  --color-brand-600: #0a8d84;
+  --color-brand-700: #0c706a;
+  --color-brand-800: #0f5a56;
+  --color-brand-900: #114b48;
+
+  /* Ink — deep navy-teal for text & dark surfaces */
+  --color-ink-50: #f4f7f8;
+  --color-ink-100: #e3eaec;
+  --color-ink-200: #c7d6da;
+  --color-ink-300: #9fb6bd;
+  --color-ink-400: #6f8d96;
+  --color-ink-500: #50717a;
+  --color-ink-600: #3e5b63;
+  --color-ink-700: #344a52;
+  --color-ink-800: #213138;
+  --color-ink-900: #0c1e25;
+  --color-ink-950: #07151a;
+
+  /* Warm accent for ratings / highlights */
+  --color-amber-glow: #f5a623;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+
+  --radius-xl2: 1.25rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-ink-800 antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  ::selection {
+    @apply bg-brand-200 text-ink-900;
+  }
+
+  /* Refined focus ring for accessibility */
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand-500 ring-offset-2 ring-offset-white;
+  }
+}
+
+@layer utilities {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+
+  /* Subtle dotted texture for the hero — reads as "data-driven" */
+  .bg-dotgrid {
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      rgba(12, 30, 37, 0.06) 1px,
+      transparent 0
+    );
+    background-size: 22px 22px;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+}

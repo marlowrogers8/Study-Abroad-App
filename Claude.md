@@ -3,8 +3,21 @@
 ## Team
 Two founders working in parallel, each on our own machine, each running Claude Code independently. We are not pair-programming in a shared terminal — we work on separate branches and sync through GitHub.
 
+## Product vision
+The main purpose of our website — and how we differentiate from other study abroad sites — is **complete transparency**. We provide actual, authentic reviews from real students instead of paid reviews and funnels that steer users toward specific abroad programs. Other sites monetize by pushing students into particular programs; we don't. Every feature and product decision should reinforce this trust-first, no-pay-to-play principle.
+
 ## Stack
-TBD — not yet decided. Update this section as soon as the stack is chosen (framework, language, package manager, database, etc.) so future Claude Code sessions have accurate context.
+- **Framework:** Next.js 15 (App Router) with React 19
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4 (config lives in `src/app/globals.css` via `@theme` — no `tailwind.config.js`)
+- **Package manager:** npm
+- **Fonts:** `next/font` — Fraunces (display/headlines) + Inter (body)
+- **Icons:** hand-rolled inline SVGs in `src/components/icons.tsx` (no icon library)
+- **Database / backend:** TBD — none yet. The AI search is currently a front-end UI shell with mocked responses (`src/lib/data.ts`), ready to wire to a real model later.
+
+### Commands
+- `npm run dev` — local dev server (localhost:3000)
+- `npm run build` — production build (run this before pushing to catch type/build errors)
 
 ## Workflow rules (always follow these)
 1. **Pull before starting work.** Always run `git pull origin main` before creating a branch or starting a new task.
@@ -18,7 +31,11 @@ TBD — not yet decided. Update this section as soon as the stack is chosen (fra
 Before starting a session, briefly confirm out loud / over text who is working on which part of the codebase (e.g. "I've got the API routes, you take the frontend form") to avoid both of us editing the same files at the same time.
 
 ## Conventions
-TBD — add naming conventions, folder structure, and style preferences here once established.
+- **Folder structure:** `src/app/` (routes, layout, global CSS), `src/components/` (reusable UI), `src/lib/` (data & helpers). Import via the `@/` alias (e.g. `@/components/Hero`).
+- **Components:** PascalCase files, one component per file. Server components by default; add `"use client"` only when interactivity (state/handlers) is needed.
+- **Design tokens:** use the brand/ink color scales and `font-display`/`font-sans` defined in `globals.css` rather than hard-coded hex values.
+- **Accessibility:** semantic HTML, `aria-*` on interactive elements, visible focus rings (already styled globally).
+- **No unnecessary dependencies** — prefer inline SVGs and native APIs over new packages.
 
 ## Notes
 - Both founders are running Claude Code locally via SSH into our own respective machines.
