@@ -26,3 +26,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# scraped outreach data — contains personal emails; never commit
+scripts/outreach/advisor-contacts.csv
+scripts/outreach/advisor-contacts-wide.csv
+scripts/outreach/generated-schools.json
+scripts/outreach/emails-to-send.json
+scripts/outreach/digested-responses.json

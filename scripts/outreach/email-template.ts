@@ -12,7 +12,11 @@
 import fs from "fs";
 import path from "path";
 
-const CONTACTS_CSV = path.join(__dirname, "advisor-contacts.csv");
+// Pull from both the curated scrape and the wide College-Scorecard scrape.
+const CONTACTS_CSVS = [
+  path.join(__dirname, "advisor-contacts.csv"),
+  path.join(__dirname, "advisor-contacts-wide.csv"),
+];
 const OUT_JSON = path.join(__dirname, "emails-to-send.json");
 
 type Contact = {
@@ -105,15 +109,16 @@ function parseCSV(filePath: string): Contact[] {
 
 // ── Main ──────────────────────────────────────────────────────────────────────
 function main() {
-  if (!fs.existsSync(CONTACTS_CSV)) {
-    console.error(`No contacts file found at ${CONTACTS_CSV}`);
-    console.error("Run scrape-advisor-contacts.ts first.");
+  const presentFiles = CONTACTS_CSVS.filter((f) => fs.existsSync(f));
+  if (presentFiles.length === 0) {
+    console.error(`No contacts files found (looked for: ${CONTACTS_CSVS.join(", ")})`);
+    console.error("Run scrape-advisor-contacts.ts (and/or scrape-wide.ts) first.");
     process.exit(1);
   }
 
-  const contacts = parseCSV(CONTACTS_CSV).filter(
-    (c) => c.email && c.email.includes("@") && c.email.includes(".edu")
-  );
+  const contacts = presentFiles
+    .flatMap((f) => parseCSV(f))
+    .filter((c) => c.email && c.email.includes("@") && c.email.includes(".edu"));
 
   // Deduplicate by email
   const seen = new Set<string>();

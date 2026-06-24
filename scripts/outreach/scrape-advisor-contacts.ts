@@ -27,7 +27,7 @@ const DELAY_MS = 1200;
 const REQUEST_TIMEOUT_MS = 12000;
 const MAX_PAGES_PER_SCHOOL = 8;
 
-type Contact = {
+export type Contact = {
   school: string;
   type: string;
   name: string;
@@ -98,7 +98,7 @@ function sleep(ms: number) {
 }
 
 // ── HTTP via curl (node fetch is blocked in this sandbox) ───────────────────
-function fetchPage(url: string): string | null {
+export function fetchPage(url: string): string | null {
   try {
     const html = execSync(
       `curl -s -L --compressed --max-time ${REQUEST_TIMEOUT_MS / 1000} ` +
@@ -364,14 +364,16 @@ function escapeCSV(val: string): string {
   }
   return val;
 }
-function toCSVRow(c: Contact): string {
+export function toCSVRow(c: Contact): string {
   return [c.school, c.type, c.name, c.email, c.title, c.kind, c.sourceUrl]
     .map(escapeCSV)
     .join(",");
 }
 
+export const CSV_HEADER = "school,type,name,email,title,kind,sourceUrl\n";
+
 // ── Crawl one school: seed page + staff paths + discovered links ────────────
-async function crawlSchool(seed: SchoolSeed): Promise<Contact[]> {
+export async function crawlSchool(seed: SchoolSeed): Promise<Contact[]> {
   const origin = originOf(seed.studyAbroadUrl);
   const regDomain = registrableDomain(seed.studyAbroadUrl);
   const pages = new Set<string>([seed.studyAbroadUrl]);
@@ -424,7 +426,7 @@ async function main() {
 
   // Append mode if resuming, else fresh header
   if (start === 0 || !fs.existsSync(OUT_CSV)) {
-    fs.writeFileSync(OUT_CSV, "school,type,name,email,title,kind,sourceUrl\n");
+    fs.writeFileSync(OUT_CSV, CSV_HEADER);
   }
 
   console.log(`Crawling ${seeds.length} schools (start=${start})...`);
@@ -466,7 +468,10 @@ async function main() {
   console.log("Review the CSV; 'personal' rows with a name get the best response rates.");
 }
 
-main().catch((e) => {
-  console.error(e);
-  process.exit(1);
-});
+// Only run when invoked directly — allows other scripts to import crawlSchool.
+if (require.main === module) {
+  main().catch((e) => {
+    console.error(e);
+    process.exit(1);
+  });
+}

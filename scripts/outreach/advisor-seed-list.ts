@@ -7,9 +7,18 @@
  * Used by scrape-advisor-contacts.ts to pull advisor names and emails.
  */
 
+export type SchoolType =
+  | "large-public"
+  | "small-liberal-arts"
+  | "hbcu"
+  | "tech"
+  | "regional"
+  | "research"
+  | "scorecard"; // auto-generated from College Scorecard
+
 export type SchoolSeed = {
   school: string;
-  type: "large-public" | "small-liberal-arts" | "hbcu" | "tech" | "regional" | "research";
+  type: SchoolType;
   studyAbroadUrl: string;
 };
 
