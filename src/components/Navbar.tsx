@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Logo } from "./Logo";
 import { MenuIcon } from "./icons";
 
@@ -38,18 +39,18 @@ export function Navbar() {
         </ul>
 
         <div className="hidden items-center gap-3 md:flex">
-          <a
-            href="#"
+          <Link
+            href="/signin"
             className="rounded-lg px-3 py-2 text-sm font-medium text-ink-700 transition-colors hover:text-ink-900"
           >
             Sign in
-          </a>
-          <a
-            href="#search"
+          </Link>
+          <Link
+            href="/signup"
             className="rounded-lg bg-ink-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-ink-800 hover:shadow"
           >
             Get started
-          </a>
+          </Link>
         </div>
 
         <button
@@ -79,19 +80,20 @@ export function Navbar() {
               </li>
             ))}
             <li className="mt-2 flex gap-3 px-2">
-              <a
-                href="#"
+              <Link
+                href="/signin"
+                onClick={() => setOpen(false)}
                 className="flex-1 rounded-lg border border-ink-200 px-4 py-2.5 text-center text-sm font-semibold text-ink-800"
               >
                 Sign in
-              </a>
-              <a
-                href="#search"
+              </Link>
+              <Link
+                href="/signup"
                 onClick={() => setOpen(false)}
                 className="flex-1 rounded-lg bg-ink-900 px-4 py-2.5 text-center text-sm font-semibold text-white"
               >
                 Get started
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
