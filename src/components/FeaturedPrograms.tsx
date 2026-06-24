@@ -29,8 +29,10 @@ function ProgramCard({ p }: { p: Program }) {
             {p.rating}
           </span>
           <span className="text-ink-400">·</span>
-          <span className="text-ink-500">{p.reviews} reviews</span>
-          <span className="ml-auto font-semibold text-ink-900">{p.costPerTerm}</span>
+          <span className="text-ink-500">{p.reviewCount.toLocaleString()} reviews</span>
+          <span className="ml-auto font-semibold text-ink-900">
+            ${p.cost.total.toLocaleString()} total
+          </span>
         </div>
 
         <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-600">{p.blurb}</p>
