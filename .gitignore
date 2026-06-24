@@ -33,3 +33,5 @@ scripts/outreach/advisor-contacts-wide.csv
 scripts/outreach/generated-schools.json
 scripts/outreach/emails-to-send.json
 scripts/outreach/digested-responses.json
+scripts/outreach/.scrape-progress
+scripts/outreach/.scrape-wide-progress

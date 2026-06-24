@@ -79,9 +79,22 @@ function discoverStudyAbroadUrl(domain: string): string | null {
   return null;
 }
 
+const PROGRESS_FILE = path.join(__dirname, ".scrape-wide-progress");
+
 function argNum(flag: string, fallback: number): number {
   const a = process.argv.find((x) => x.startsWith(`${flag}=`));
   return a ? parseInt(a.split("=")[1]) || fallback : fallback;
+}
+
+// Explicit --start wins; --fresh forces 0; otherwise auto-resume from checkpoint.
+function resolveStart(): number {
+  if (process.argv.some((a) => a.startsWith("--start="))) return argNum("--start", 0);
+  if (process.argv.includes("--fresh")) return 0;
+  if (fs.existsSync(PROGRESS_FILE)) {
+    const n = parseInt(fs.readFileSync(PROGRESS_FILE, "utf-8").trim());
+    if (n > 0) return n;
+  }
+  return 0;
 }
 
 async function main() {
@@ -91,13 +104,14 @@ async function main() {
   }
 
   const schools = JSON.parse(fs.readFileSync(SCHOOLS_JSON, "utf-8")) as GeneratedSchool[];
-  const start = argNum("--start", 0);
+  const start = resolveStart();
   const limit = argNum("--limit", schools.length);
   const batch = schools.slice(start, start + limit);
 
   if (start === 0 || !fs.existsSync(OUT_CSV)) {
     fs.writeFileSync(OUT_CSV, CSV_HEADER);
   }
+  if (start > 0) console.log(`Resuming from school #${start} (checkpoint).`);
 
   console.log(`Wide scrape: ${batch.length} schools (start=${start})`);
   let discovered = 0;
@@ -105,7 +119,9 @@ async function main() {
   let i = 0;
 
   for (const s of batch) {
-    process.stdout.write(`[${start + ++i}/${schools.length}] ${s.school}... `);
+    const absIndex = start + i;
+    process.stdout.write(`[${absIndex + 1}/${schools.length}] ${s.school}... `);
+    i++;
 
     let url: string | null = null;
     try {
@@ -116,6 +132,7 @@ async function main() {
 
     if (!url) {
       console.log("no study abroad office found");
+      fs.writeFileSync(PROGRESS_FILE, String(absIndex + 1));
       await sleep(DISCOVERY_DELAY_MS);
       continue;
     }
@@ -127,6 +144,7 @@ async function main() {
       contacts = await crawlSchool(seed);
     } catch {
       console.log("crawl error");
+      fs.writeFileSync(PROGRESS_FILE, String(absIndex + 1));
       await sleep(DISCOVERY_DELAY_MS);
       continue;
     }
@@ -134,9 +152,16 @@ async function main() {
     for (const c of contacts) fs.appendFileSync(OUT_CSV, toCSVRow(c) + "\n");
     totalContacts += contacts.length;
 
+    // Checkpoint after rows are flushed so resume never loses/dupes a school.
+    fs.writeFileSync(PROGRESS_FILE, String(absIndex + 1));
+
     const named = contacts.filter((c) => c.kind === "personal" && c.name).length;
     console.log(`OK — ${contacts.length} contacts (${named} named)`);
     await sleep(DISCOVERY_DELAY_MS);
+  }
+
+  if (start + i >= schools.length && fs.existsSync(PROGRESS_FILE)) {
+    fs.rmSync(PROGRESS_FILE);
   }
 
   console.log(

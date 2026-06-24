@@ -414,13 +414,27 @@ export async function crawlSchool(seed: SchoolSeed): Promise<Contact[]> {
 }
 
 // ── Main ────────────────────────────────────────────────────────────────────
+const PROGRESS_FILE = path.join(__dirname, ".scrape-progress");
+
 function argNum(flag: string, fallback: number): number {
   const a = process.argv.find((x) => x.startsWith(`${flag}=`));
   return a ? parseInt(a.split("=")[1]) || fallback : fallback;
 }
 
+// Resolve where to start: explicit --start wins; --fresh forces 0; otherwise
+// auto-resume from the last checkpoint so re-running the same command continues.
+function resolveStart(): number {
+  if (process.argv.some((a) => a.startsWith("--start="))) return argNum("--start", 0);
+  if (process.argv.includes("--fresh")) return 0;
+  if (fs.existsSync(PROGRESS_FILE)) {
+    const n = parseInt(fs.readFileSync(PROGRESS_FILE, "utf-8").trim());
+    if (n > 0) return n;
+  }
+  return 0;
+}
+
 async function main() {
-  const start = argNum("--start", 0);
+  const start = resolveStart();
   const limit = argNum("--limit", SCHOOL_SEEDS.length);
   const seeds = SCHOOL_SEEDS.slice(start, start + limit);
 
@@ -429,18 +443,22 @@ async function main() {
     fs.writeFileSync(OUT_CSV, CSV_HEADER);
   }
 
+  if (start > 0) console.log(`Resuming from school #${start} (checkpoint).`);
   console.log(`Crawling ${seeds.length} schools (start=${start})...`);
   let totalPersonal = 0;
   let totalOffice = 0;
   let i = 0;
 
   for (const seed of seeds) {
-    process.stdout.write(`[${++i}/${seeds.length}] ${seed.school}... `);
+    const absIndex = start + i;
+    process.stdout.write(`[${absIndex + 1}/${SCHOOL_SEEDS.length}] ${seed.school}... `);
+    i++;
     let contacts: Contact[] = [];
     try {
       contacts = await crawlSchool(seed);
     } catch {
       console.log("error");
+      fs.writeFileSync(PROGRESS_FILE, String(absIndex + 1)); // checkpoint past it
       await sleep(DELAY_MS);
       continue;
     }
@@ -452,6 +470,10 @@ async function main() {
 
     for (const c of contacts) fs.appendFileSync(OUT_CSV, toCSVRow(c) + "\n");
 
+    // Checkpoint AFTER the school's rows are flushed, so a crash never loses
+    // or double-writes a school on resume.
+    fs.writeFileSync(PROGRESS_FILE, String(absIndex + 1));
+
     if (contacts.length) {
       const named = personal.filter((c) => c.name).length;
       console.log(`OK — ${personal.length} personal (${named} named), ${office.length} office`);
@@ -460,6 +482,11 @@ async function main() {
     }
 
     await sleep(DELAY_MS);
+  }
+
+  // Finished cleanly — clear the checkpoint so a future run starts fresh.
+  if (start + i >= SCHOOL_SEEDS.length && fs.existsSync(PROGRESS_FILE)) {
+    fs.rmSync(PROGRESS_FILE);
   }
 
   console.log(
