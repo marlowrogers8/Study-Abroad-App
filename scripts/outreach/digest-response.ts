@@ -3,8 +3,8 @@
  * Merges extracted data into src/lib/data/programs.json.
  *
  * Usage:
- *   Single reply (pipe from stdin):
- *     echo "Thanks for reaching out! I recommend CIEE Seville..." | npx tsx scripts/outreach/digest-response.ts
+ *   Single reply (pipe from stdin) — recommended for agent integration:
+ *     echo "$replyBody" | npx tsx scripts/outreach/digest-response.ts --school "University of Iowa"
  *
  *   Batch file of replies (one per line, separated by "---"):
  *     npx tsx scripts/outreach/digest-response.ts --file replies.txt
@@ -295,11 +295,16 @@ async function main() {
     return;
   }
 
-  // Default: read from stdin
+  // Default: read reply body from stdin. The agent passes the sender's school
+  // via --school so each reply is attributed correctly, e.g.:
+  //   echo "$replyBody" | npx tsx digest-response.ts --school "University of Iowa"
+  const schoolFlag = args.indexOf("--school");
+  const school = schoolFlag >= 0 ? args[schoolFlag + 1] ?? "Unknown School" : "Unknown School";
+
   let input = "";
   process.stdin.on("data", (chunk) => (input += chunk));
   process.stdin.on("end", async () => {
-    await processReply(input.trim(), "Unknown School");
+    await processReply(input.trim(), school);
   });
 }
 

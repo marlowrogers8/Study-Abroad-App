@@ -1,2 +1,78 @@
-school,type,name,email,title,sourceUrl
-University of Wisconsin Madison,large-public,,sbarcus@wisc.edu,Study Abroad Advisor,https://international.wisc.edu/study-abroad/contact/
+school,type,name,email,title,kind,sourceUrl
+University of California Berkeley,large-public,,studyabroad@berkeley.edu,Study Abroad Office,office,https://studyabroad.berkeley.edu/contact-us
+University of California Berkeley,large-public,,summerabroad@berkeley.edu,Study Abroad Office,office,https://studyabroad.berkeley.edu/contact-us
+University of California Berkeley,large-public,,globalinternships@berkeley.edu,Study Abroad Office,office,https://studyabroad.berkeley.edu/contact-us
+University of Texas Austin,large-public,,global@austin.utexas.edu,Study Abroad Office,office,https://world.utexas.edu/contact
+University of Texas Austin,large-public,,educationabroad@austin.utexas.edu,Study Abroad Office,office,https://world.utexas.edu/contact
+University of Wisconsin Madison,large-public,,sbarcus@wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/study-abroad/contact/
+University of Wisconsin Madison,large-public,,dean@international.wisc.edu,Director,personal,https://international.wisc.edu/people/
+University of Wisconsin Madison,large-public,Lesley Bartlett,lesley.bartlett@wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/people/
+University of Wisconsin Madison,large-public,,kdaum@wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/people/
+University of Wisconsin Madison,large-public,Nikki Davis,nikki.davis@wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/people/
+University of Wisconsin Madison,large-public,,gaczkowski@wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/people/
+University of Wisconsin Madison,large-public,,dkgold@studyabroad.wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/people/
+University of Wisconsin Madison,large-public,Laura Hammond,laura.hammond@wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/people/
+University of Wisconsin Madison,large-public,,fhoover@wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/people/
+University of Wisconsin Madison,large-public,Angie Hubbard,angie.hubbard@wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/people/
+University of Wisconsin Madison,large-public,Jaya Larsen,jaya.larsen@wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/people/
+University of Wisconsin Madison,large-public,Ronald Machoian,ronald.machoian@wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/people/
+University of Wisconsin Madison,large-public,Samantha Mccabe,samantha.mccabe@wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/people/
+University of Wisconsin Madison,large-public,,mccleary2@wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/people/
+University of Wisconsin Madison,large-public,,jmichor@wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/people/
+University of Wisconsin Madison,large-public,,wiscscholars@bascom.wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/people/
+University of Wisconsin Madison,large-public,,jzdouglas@wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/people/
+University of Wisconsin Madison,large-public,,jwrohrer@wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/people/
+University of Wisconsin Madison,large-public,Kristine Schutte,kristine.schutte@wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/people/
+University of Wisconsin Madison,large-public,Jay Stokes,jay.stokes@wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/people/
+University of Wisconsin Madison,large-public,Jennifer Taylor,jennifer.taylor@wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/people/
+University of Wisconsin Madison,large-public,Catherine Vakhnina,catherine.vakhnina@wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/people/
+University of Wisconsin Madison,large-public,,cnvaughn2@wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/people/
+University of Wisconsin Madison,large-public,Maria Vishnevsky,maria.vishnevsky@wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/people/
+University of Wisconsin Madison,large-public,Irina Punguil,ipunguilbrav@wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/casi/
+University of Wisconsin Madison,large-public,,ldennis@wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/media-directory/
+University of Wisconsin Madison,large-public,,wirc@iris.wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/media-directory/
+University of Wisconsin Madison,large-public,,seafli@lpo.wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/media-directory/
+University of Wisconsin Madison,large-public,,wisli@lpo.wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/media-directory/
+University of Wisconsin Madison,large-public,,multilanguage@lpo.wisc.edu,Study Abroad Advisor,personal,https://international.wisc.edu/media-directory/
+University of Illinois Urbana-Champaign,large-public,,joypha@illinois.edu,Director,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,,bcoy@illinois.edu,Manager,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,Andy Hinnant,ahinnant@illinois.edu,Education Abroad Coordinator,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,,ezepeda2@uillinois.edu,Education Abroad Coordinator,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,Boswell Hutson,hutson2@illinois.edu,Assistant Director for Media and Marketing,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,Ali Freter,freter1@illinois.edu,Director,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,Christy Murray,murray52@illinois.edu,Manager,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,Allison Witt,awitt1@illinois.edu,Director of International Programs,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,,weiliu1@illinois.edu,Associate Director of International Programs,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,,faa-abroad@illinois.edu,Assistant Dean of Academic Programs and International Educ,office,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,Nicole Lamers,lamers@illinois.edu,Director,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,,cjwalls@illinois.edu,Director,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,,gcleary@illinois.edu,Director,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,Vicky Bateman,vbateman@illinois.edu,Advisor,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,Kate Abney,kabney@illinois.edu,Study Abroad Advisor,personal,https://studyabroad.illinois.edu/incoming-students/info-for-illinois-units-staff/
+University of Illinois Urbana-Champaign,large-public,Jana Gadbury,jgadbury@illinois.edu,Director of IPENG since November,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,,kbone@illinois.edu,Coordinator,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,Erika Brewer,esbrewer@illinois.edu,Advisor,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,,kubitska@illinois.edu,Advisor,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,Steffi Xu,steffixu@illinois.edu,Coordinator,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,Patrick Kearns,pkearns@illinois.edu,Advisor,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,Mark Beirn,mbeirn@illinois.edu,Director,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,,cmarcelo@illinois.edu,Director,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,,rfridmn2@illinois.edu,Associate Director of Education Abroad,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,,anaeg3@illinois.edu,Coordinator for Education Abroad,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,,kiarapd2@illinois.edu,Specialist,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,,slepak2@illinois.edu,Specialist,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,,berthel2@illinois.edu,Coordinator for Intercultural and Global Experiential Le,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,Rachael Dean,rldean@illinois.edu,Dean,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,,iage@illinois.edu,Study Abroad Advisor,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,,schrepfe@illinois.edu,Assistant Director for Global Education Knowledge Management,personal,https://studyabroad.illinois.edu/about/staff/
+University of Illinois Urbana-Champaign,large-public,,las-exchange@mx.uillinois.edu,Study Abroad Office,office,https://studyabroad.illinois.edu/incoming-students/info-for-illinois-units-staff/
+University of Illinois Urbana-Champaign,large-public,Katie Clark,keclark@illinois.edu,Study Abroad Advisor,personal,https://studyabroad.illinois.edu/incoming-students/info-for-illinois-units-staff/
+University of Illinois Urbana-Champaign,large-public,,isss@illinois.edu,Study Abroad Advisor,personal,https://studyabroad.illinois.edu/incoming-students/info-for-illinois-units-staff/
+University of Illinois Urbana-Champaign,large-public,,aces-studyabroad@illinois.edu,Study Abroad Office,office,https://studyabroad.illinois.edu/faculty-staff/developing-a-program/
+University of Illinois Urbana-Champaign,large-public,,international@education.illinois.edu,Study Abroad Office,office,https://studyabroad.illinois.edu/faculty-staff/developing-a-program/
+University of Illinois Urbana-Champaign,large-public,,las-studyabroad@illinois.edu,Study Abroad Office,office,https://studyabroad.illinois.edu/faculty-staff/developing-a-program/
+University of Illinois Urbana-Champaign,large-public,,kpotthst@illinois.edu,Study Abroad Advisor,personal,https://studyabroad.illinois.edu/faculty-staff/developing-a-program/
+University of Illinois Urbana-Champaign,large-public,,studyabroad@business.illinois.edu,Study Abroad Office,office,https://studyabroad.illinois.edu/faculty-staff/developing-a-program/
+University of Illinois Urbana-Champaign,large-public,,ipeng@illinois.edu,Study Abroad Advisor,personal,https://studyabroad.illinois.edu/faculty-staff/developing-a-program/
+University of Illinois Urbana-Champaign,large-public,Gretchen Adams,gadams4@illinois.edu,Study Abroad Advisor,personal,https://studyabroad.illinois.edu/faculty-staff/global-classrooms/
+University of Illinois Urbana-Champaign,large-public,Melissa Newell,menewell@illinois.edu,Study Abroad Advisor,personal,https://studyabroad.illinois.edu/faculty-staff/global-classrooms/
