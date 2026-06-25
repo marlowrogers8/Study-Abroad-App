@@ -63,7 +63,7 @@ function buildBody(contact: Contact): string {
 
   return `${greeting}
 
-My name is Zadin Stephens, and I'm a student at Claremont McKenna College building a study abroad platform called Abroadly. It's focused on something I've noticed is missing from the sites I've used: complete cost and safety transparency. Most sites show a program fee but hide housing, flights, visa costs, and insurance until students are already deep into the process.
+My name is Zadin Stephens, and I'm a student at Claremont McKenna College building a study abroad platform called Abroadly. It's focused on something I've noticed is missing from the sites I've used: complete cost and safety transparency. Most of the big study abroad sites make their money from sponsored listings, paid priority placement, and referral commissions, so they quietly steer students toward whoever pays them, while hiding the real cost of a program (housing, flights, visas, insurance) until you're already deep into the process. Abroadly takes no money from programs. The whole point is to rank everything honestly, on real student reviews and real data, with nothing pay-to-play.
 
 As someone who advises students${schoolContext} on study abroad decisions, your perspective would be incredibly valuable to me. I have three quick questions:
 
@@ -73,13 +73,14 @@ As someone who advises students${schoolContext} on study abroad decisions, your 
 
 3. What information do current study abroad websites fail to show that you wish they did? Hidden costs, safety nuances, LGBTQ+ considerations, credit transfer realities, or anything students consistently underestimate.
 
-Even a few sentences on any of these would help me a lot. I'm not selling anything or representing a company. This is a student project I'm building because I'm going abroad next year and found the existing tools frustrating.
+Even a few sentences on any of these would help me a lot. I'm not selling anything or representing a company. I'm a student just starting to plan my own time abroad and figure out where to go, and I want to build the honest resource I wish I had when I started looking.
 
 Thank you for your time,
 
 Zadin Stephens
-Class of 2027, Claremont McKenna College
-zadinstephens@students.claremontmckenna.edu`;
+Class of 2029, Claremont McKenna College
+zstephens29@students.claremontmckenna.edu
+(805) 886-2326`;
 }
 
 // ── CSV parser ────────────────────────────────────────────────────────────────
