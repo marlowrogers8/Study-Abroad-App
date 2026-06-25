@@ -6,10 +6,10 @@ import { Logo } from "./Logo";
 import { MenuIcon } from "./icons";
 
 const navLinks = [
-  { label: "Programs", href: "#programs" },
-  { label: "Destinations", href: "#destinations" },
-  { label: "Reviews", href: "#why" },
-  { label: "How it works", href: "#how" },
+  { label: "Programs", href: "/programs" },
+  { label: "Destinations", href: "/#destinations" },
+  { label: "Reviews", href: "/#why" },
+  { label: "How it works", href: "/#how" },
 ];
 
 export function Navbar() {

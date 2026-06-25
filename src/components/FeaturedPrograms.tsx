@@ -1,64 +1,7 @@
-import { featuredPrograms, type Program } from "@/lib/data";
-import { StarIcon, ArrowRightIcon, ShieldCheckIcon } from "./icons";
-
-function ProgramCard({ p }: { p: Program }) {
-  return (
-    <article className="group flex flex-col overflow-hidden rounded-2xl border border-ink-100 bg-white transition-all hover:-translate-y-1 hover:shadow-[0_24px_50px_-24px_rgba(12,30,37,0.35)]">
-      {/* Header band with grade */}
-      <div className="relative flex items-center justify-between bg-ink-950 px-5 py-4">
-        <div>
-          <p className="text-sm font-semibold text-white">
-            {p.flag} {p.name}
-          </p>
-          <p className="text-xs text-ink-200">
-            {p.city}, {p.country}
-          </p>
-        </div>
-        <div
-          className="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-xl bg-brand-500 text-white"
-          title="Student review grade"
-        >
-          <span className="text-lg font-bold leading-none">{p.grade}</span>
-        </div>
-      </div>
-
-      <div className="flex flex-1 flex-col p-5">
-        <div className="flex items-center gap-3 text-sm">
-          <span className="inline-flex items-center gap-1 font-semibold text-ink-900">
-            <StarIcon className="h-4 w-4 text-[var(--color-amber-glow)]" />
-            {p.rating}
-          </span>
-          <span className="text-ink-400">·</span>
-          <span className="text-ink-500">{p.reviewCount.toLocaleString()} reviews</span>
-          <span className="ml-auto font-semibold text-ink-900">
-            ${p.cost.total.toLocaleString()} total
-          </span>
-        </div>
-
-        <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-600">{p.blurb}</p>
-
-        <div className="mt-4 flex flex-wrap gap-2">
-          {p.tags.map((t) => (
-            <span
-              key={t}
-              className="rounded-full bg-brand-50 px-2.5 py-1 text-xs font-medium text-brand-700"
-            >
-              {t}
-            </span>
-          ))}
-        </div>
-
-        <a
-          href="#"
-          className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-brand-700 hover:text-brand-800"
-        >
-          Read student reviews
-          <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-        </a>
-      </div>
-    </article>
-  );
-}
+import Link from "next/link";
+import { featuredPrograms } from "@/lib/data";
+import { ProgramCard } from "./programs/ProgramCard";
+import { ShieldCheckIcon, ArrowRightIcon } from "./icons";
 
 export function FeaturedPrograms() {
   return (
@@ -75,7 +18,7 @@ export function FeaturedPrograms() {
           </div>
           <p className="inline-flex items-center gap-1.5 text-xs font-medium text-ink-500">
             <ShieldCheckIcon className="h-4 w-4 text-brand-600" />
-            Ranked by verified reviews — not by who paid
+            Ranked by verified reviews, not by who paid
           </p>
         </div>
 
@@ -83,6 +26,16 @@ export function FeaturedPrograms() {
           {featuredPrograms.map((p) => (
             <ProgramCard key={p.id} p={p} />
           ))}
+        </div>
+
+        <div className="mt-10 flex justify-center">
+          <Link
+            href="/programs"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-ink-200 bg-white px-5 py-2.5 text-sm font-semibold text-ink-800 transition-colors hover:border-brand-300 hover:text-brand-700"
+          >
+            Browse all programs
+            <ArrowRightIcon className="h-4 w-4" />
+          </Link>
         </div>
       </div>
     </section>
