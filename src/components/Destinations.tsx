@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { destinations } from "@/lib/data";
 import { ArrowRightIcon } from "./icons";
 
@@ -14,20 +15,20 @@ export function Destinations() {
               Browse by destination
             </h2>
           </div>
-          <a
-            href="#"
+          <Link
+            href="/programs"
             className="inline-flex items-center gap-1 text-sm font-semibold text-brand-700 hover:text-brand-800"
           >
-            All 84 countries
+            Browse all programs
             <ArrowRightIcon className="h-4 w-4" />
-          </a>
+          </Link>
         </div>
 
         <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
           {destinations.map((d) => (
-            <a
+            <Link
               key={d.country}
-              href="#"
+              href={`/programs?country=${encodeURIComponent(d.country)}`}
               className={`group relative flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-2xl bg-gradient-to-br ${d.gradient} p-4 ring-1 ring-inset ring-black/5 transition-transform hover:-translate-y-1`}
             >
               <span
@@ -48,7 +49,7 @@ export function Destinations() {
                   {d.programCount} programs
                 </span>
               </span>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

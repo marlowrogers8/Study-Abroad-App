@@ -6,6 +6,10 @@ export type { Program, Destination };
 
 export const allPrograms: Program[] = programsData.programs as Program[];
 
+export function getProgramById(id: string): Program | undefined {
+  return allPrograms.find((p) => p.id === id);
+}
+
 export const featuredPrograms: Program[] = allPrograms
   .filter((p) => p.rating >= 4.7)
   .sort((a, b) => b.reviewCount - a.reviewCount)
