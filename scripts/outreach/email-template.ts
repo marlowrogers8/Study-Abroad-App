@@ -63,17 +63,17 @@ function buildBody(contact: Contact): string {
 
   return `${greeting}
 
-My name is Zadin Stephens — I'm a student at Claremont McKenna College and I'm building a study abroad platform called Abroadly focused on something I've noticed is genuinely missing: complete cost and safety transparency. Most sites show a program fee but hide housing, flights, visa costs, and insurance until students are already deep into the process.
+My name is Zadin Stephens, and I'm a student at Claremont McKenna College building a study abroad platform called Abroadly. It's focused on something I've noticed is genuinely missing: complete cost and safety transparency. Most sites show a program fee but hide housing, flights, visa costs, and insurance until students are already deep into the process.
 
 As someone who advises students${schoolContext} on study abroad decisions, your perspective would be incredibly valuable to me. I have three quick questions:
 
 1. Which programs do you most frequently recommend, and what makes them stand out? (Could be cost, credit transfer, support quality, anything.)
 
-2. Are there programs you actively steer students away from — and if so, what's the reason? (No need to name names if you'd prefer not to.)
+2. Are there programs you actively steer students away from, and if so, what's the reason? (No need to name names if you'd prefer not to.)
 
-3. What information do current study abroad websites fail to show that you wish they did? Hidden costs, safety nuances, LGBTQ+ considerations, credit transfer realities — anything students consistently underestimate.
+3. What information do current study abroad websites fail to show that you wish they did? Hidden costs, safety nuances, LGBTQ+ considerations, credit transfer realities, or anything students consistently underestimate.
 
-Even a few sentences on any of these would be genuinely useful. I'm not selling anything or representing a company — this is a student project I'm building because I'm going abroad next year and found the existing tools frustrating.
+Even a few sentences on any of these would be genuinely useful. I'm not selling anything or representing a company. This is a student project I'm building because I'm going abroad next year and found the existing tools frustrating.
 
 Thank you for your time,
 
