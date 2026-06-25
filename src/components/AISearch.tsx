@@ -141,7 +141,7 @@ function AnswerState({ query }: { query: string }) {
                 {m.flag} {m.name}
               </p>
               <p className="truncate text-xs text-ink-500">
-                {m.city}, {m.country} · {m.costPerTerm}
+                {m.city}, {m.country} · ${m.cost.total.toLocaleString()} total
               </p>
             </div>
             <div className="flex shrink-0 items-center gap-1 text-sm font-semibold text-ink-800">
