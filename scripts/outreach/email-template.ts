@@ -25,8 +25,13 @@ type Contact = {
   name: string;
   email: string;
   title: string;
+  kind: string; // "personal" | "office"
   sourceUrl: string;
 };
+
+// A single source page yielding more than this many emails is a campus-wide
+// directory dump (entire faculty/staff), not a study abroad office. Drop those.
+const DIRECTORY_DUMP_CAP = 60;
 
 type EmailDraft = {
   to: string;
@@ -116,9 +121,17 @@ function main() {
     process.exit(1);
   }
 
-  const contacts = presentFiles
+  const raw = presentFiles
     .flatMap((f) => parseCSV(f))
     .filter((c) => c.email && c.email.includes("@") && c.email.includes(".edu"));
+
+  // Drop campus-directory dumps: any source page that yielded more than
+  // DIRECTORY_DUMP_CAP emails is the whole university directory, not an office.
+  const perPage = new Map<string, number>();
+  for (const c of raw) perPage.set(c.sourceUrl, (perPage.get(c.sourceUrl) ?? 0) + 1);
+  const dumpedPages = [...perPage].filter(([, n]) => n > DIRECTORY_DUMP_CAP);
+  const droppedRows = dumpedPages.reduce((s, [, n]) => s + n, 0);
+  const contacts = raw.filter((c) => (perPage.get(c.sourceUrl) ?? 0) <= DIRECTORY_DUMP_CAP);
 
   // Deduplicate by email
   const seen = new Set<string>();
@@ -127,6 +140,12 @@ function main() {
     seen.add(c.email);
     return true;
   });
+
+  // Prioritise: named advisors first, then office inboxes, then unnamed staff —
+  // so if you only send the first N, you hit the highest-value contacts.
+  const rank = (c: Contact) =>
+    c.kind === "personal" && c.name ? 0 : c.kind === "office" ? 1 : 2;
+  unique.sort((a, b) => rank(a) - rank(b));
 
   const drafts: EmailDraft[] = unique.map((contact) => ({
     to: contact.email,
@@ -137,11 +156,19 @@ function main() {
 
   fs.writeFileSync(OUT_JSON, JSON.stringify(drafts, null, 2));
 
+  const named = unique.filter((c) => c.kind === "personal" && c.name).length;
+  const office = unique.filter((c) => c.kind === "office").length;
+  const unnamed = unique.length - named - office;
+
   console.log(`Generated ${drafts.length} email drafts → ${OUT_JSON}`);
+  console.log(
+    `  Filtered out ${droppedRows} rows from ${dumpedPages.length} campus-directory dump page(s).`
+  );
+  console.log(`  Queue order: ${named} named advisors → ${office} office inboxes → ${unnamed} unnamed staff.`);
   console.log("");
   console.log("Next steps:");
   console.log("  1. Review a sample: open emails-to-send.json and spot-check 5–10 entries");
-  console.log("  2. Send via Gmail API using your CMC account at max 80/day");
+  console.log("  2. Send via Gmail API using your CMC account at max 80/day (named first)");
   console.log("  3. Spread sends across 9am–4pm Mon–Thu for best open rates");
   console.log("  4. Feed replies through: npx tsx scripts/outreach/digest-response.ts");
   console.log("");
