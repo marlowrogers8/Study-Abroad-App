@@ -135,16 +135,25 @@ function main() {
 
   // Deduplicate by email
   const seen = new Set<string>();
-  const unique = contacts.filter((c) => {
+  const deduped = contacts.filter((c) => {
     if (seen.has(c.email)) return false;
     seen.add(c.email);
     return true;
   });
 
+  // By default keep only high-value tiers: named advisors + office inboxes.
+  // Unnamed flast@ staff (no first name to personalise, lower response rate)
+  // are excluded unless --include-unnamed is passed.
+  const includeUnnamed = process.argv.includes("--include-unnamed");
+  const isNamed = (c: Contact) => c.kind === "personal" && !!c.name;
+  const isOffice = (c: Contact) => c.kind === "office";
+  const unique = includeUnnamed
+    ? deduped
+    : deduped.filter((c) => isNamed(c) || isOffice(c));
+
   // Prioritise: named advisors first, then office inboxes, then unnamed staff —
   // so if you only send the first N, you hit the highest-value contacts.
-  const rank = (c: Contact) =>
-    c.kind === "personal" && c.name ? 0 : c.kind === "office" ? 1 : 2;
+  const rank = (c: Contact) => (isNamed(c) ? 0 : isOffice(c) ? 1 : 2);
   unique.sort((a, b) => rank(a) - rank(b));
 
   const drafts: EmailDraft[] = unique.map((contact) => ({
